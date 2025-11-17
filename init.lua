@@ -87,6 +87,10 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -255,7 +259,17 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
+  --
+  -- THESE ARE THE PLUGINS I ADDED BY MYSELF THAT I AM VERY PROUD OF
+  --
+  --
+  --
+  require 'custom.plugins.helloWorld',
+  require 'custom.plugins.shadow-nvim',
 
+  -- init.lua:
+  require 'custom.plugins.telescope',
+  require 'custom.plugins.nvim-tree',
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -436,6 +450,25 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      -- CTRL + T: first press = bottom terminal (8 lines)
+      -- next presses = vertical terminals next to each other
+      vim.keymap.set('n', '<C-t>', function()
+        -- Count existing terminal windows
+        local term_windows = vim.tbl_filter(function(win)
+          local buf = vim.api.nvim_win_get_buf(win)
+          return vim.bo[buf].buftype == 'terminal'
+        end, vim.api.nvim_list_wins())
+
+        if #term_windows == 0 then
+          -- No terminal exists → create bottom terminal
+          vim.cmd 'belowright 8split | terminal'
+        else
+          -- Terminals exist → create a new vertical split terminal
+          vim.cmd 'vsplit | terminal'
+        end
+        --Go into insert mode auatomatically
+        vim.cmd 'startinsert'
+      end, { desc = 'Open bottom terminal or split new terminal + auto insert' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
