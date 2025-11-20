@@ -1,9 +1,9 @@
 return {
   'rjshkhr/shadow.nvim',
+  name = 'shadow',
   lazy = false,
   priority = 1000,
   config = function()
-    vim.opt.termguicolors = true
-    vim.cmd.colorscheme 'shadow'
+    require('shadow').setup()
   end,
 }

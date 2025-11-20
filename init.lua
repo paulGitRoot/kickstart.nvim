@@ -94,8 +94,14 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+--THESE BELOW ARE FOR MY CUSTOM INDENTATION
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -264,12 +270,15 @@ require('lazy').setup({
   --
   --
   --
-  require 'custom.plugins.helloWorld',
+  require 'custom.plugins.web-devicons',
+  require 'custom.plugins.nvim-tree',
   require 'custom.plugins.shadow-nvim',
+  require 'custom.plugins.treesitter',
+  require 'custom.plugins.autopairs',
 
   -- init.lua:
   require 'custom.plugins.telescope',
-  require 'custom.plugins.nvim-tree',
+
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -915,7 +924,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 2000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
@@ -927,7 +936,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight'
     end,
   },
 
@@ -1042,6 +1051,10 @@ require('lazy').setup({
       task = '📌',
       lazy = '💤 ',
     },
+  },
+}, {
+  opts = {
+    rocks = { enabled = false, hererocks = false },
   },
 })
 
