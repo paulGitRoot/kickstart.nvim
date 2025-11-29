@@ -271,7 +271,6 @@ require('lazy').setup({
   --
   --
   require 'custom.plugins.web-devicons',
-  require 'custom.plugins.nvim-tree',
 
   --THESE BELOW ARE COLORSCHEMES FOR MY NEOVIM SETUP
   require 'custom.plugins.shadow-nvim',
