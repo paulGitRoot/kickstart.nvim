@@ -100,6 +100,11 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 
+--THESE ARE ALSO MY CUSTOM CONFIGS
+vim.opt.wrap = false
+vim.opt.sidescroll = 1
+vim.opt.sidescrolloff = 5
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
