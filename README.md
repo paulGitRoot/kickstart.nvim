@@ -18,7 +18,9 @@ Kickstart.nvim targets *only* the latest
 ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
 ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
 If you are experiencing issues, please make sure you have the latest versions.
+
 ##Commmands to install the latest neovim version
+
 ```bash
 cd ~/Downloads
 wget https://github.com/neovim/neovim-releases/releases/download/v0.11.5/nvim-linux-x86_64.appimage
